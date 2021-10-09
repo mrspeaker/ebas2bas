@@ -102,7 +102,7 @@ const replaceBases = TRANSFORM_BASES ? compose(replaceBinary, replaceHex) : id;
 
 const numberize = (nonNumberedLines) => {
   const replaceLabels = (line, labels) =>
-    regexReplace(line, `${TOKEN_LABEL}([a-z]+)`, (line, match) =>
+    regexReplace(line, `${TOKEN_LABEL}([a-z_]+)`, (line, match) =>
       line.replace(match[0], labels[match[0]])
     );
 
