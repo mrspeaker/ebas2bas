@@ -1,0 +1,61 @@
+* EBAS2BAS
+Transform .ebas files to .bas files by adding line numbers, and turning labels (~label_name) into line numbers, and some other helpful transformations.
+
+** Usage
+
+#+BEGIN_SRC
+node ebas2bas.js <.ebas filename>
+#+END_SRC
+
+You can omit the ".ebas" extension. The output will be the the same name, but with a ".bas" extension.
+
+** Transformations
+
+*** Line numbers & labels
+#+BEGIN_SRC
+   ~top
+   print "i am the best ";
+   goto ~top
+#+END_SRC
+
+ compiles to:
+
+#+BEGIN_SRC
+   10 print "i am the best";
+   20 goto 10
+#+END_SRC
+
+*** Support for hex and binary numbers
+
+ Converts hex and binary numbers to decimal
+
+#+BEGIN_SRC
+   0x1f -> 31
+   0b111 -> 7
+   0b1000_0001 -> 129
+#+END_SRC
+
+*** Comments
+
+Comments with "#" are removed from the source code (You can still use REM comments if you want them to stay).
+
+#+BEGIN_SRC
+   poke 0xD020,1 # Make border white -> poke 53280,1
+#+END_SRC
+
+*** Multi line source
+
+Most BASIC programs jam many statements onto a single line. To keep the source readable, you can use multiple lines - then any ending with ":" will be concatenated.
+
+#+BEGIN_SRC
+   for n=0 to 62 :
+     read q :
+     poke 0x340+n,q :
+   next
+#+END_SRC
+
+ compiles to:
+
+#+BEGIN_SRC
+   10 for n=0 to 62 :read q :poke 832+n,q :next
+#+END_SRC

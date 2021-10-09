@@ -1,0 +1,46 @@
+# .ebas -> .bas introduction file
+# Run with:
+# > node ebas.js intro
+# Generates a regular C64 basic file `./intro.bas`
+
+poke 0xd020,0: poke 0xd021,0 # Set colors to black
+
+# C64 asm coders know all the $DXXX locations by heart,
+# C64 basic coders know all the v+XX locations by heart!
+v=0xd000: # VIC chip base address
+
+# sprites
+mask=0b_0001_1100 # let's use sprite 3,4, and 5.
+
+poke v+0x15,mask # sprite enable
+poke 0x7fa,0x0d: # Sprite pointers
+poke 0x7fb,0x0d:
+poke 0x7fc,0x0d
+
+# Read the sprite data
+for n=0 to 62 :
+  read q :
+  poke 0x340+n,q :
+next
+
+poke v+0x17,mask: # sprite double width/height
+poke v+0x1d,mask
+
+# Position sprites
+for n=4 to 9:
+  poke v+n, n*20:
+next
+
+# Print some text
+n=0
+print "{clear}"
+~top
+poke 646,n:n=n+1
+print "coding is basic ...  ";
+goto ~top
+
+data 0,127,0,1,255,192,3,255,224,3,231,224
+data 7,217,240,7,223,240,7,217,240,3,231,224
+data 3,255,224,3,255,224,2,255,160,1,127,64
+data 1,62,64,0,156,128,0,156,128,0,73,0,0,73,0
+data 0,62,0,0,62,0,0,62,0,0,28,0
