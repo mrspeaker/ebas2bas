@@ -1,7 +1,7 @@
 * EBAS2BAS
-Transform .ebas files to .bas files by adding line numbers, and turning labels (~label_name) into line numbers, and some other helpful transformations.
+C64 BASIC, with some lil' conveniences: no line numbers required (line numbers are generated from labels) and some other helpful transformations. This tool converts /.ebas/ files to standard C64 BASIC as a /.bas/ file.
 
-What is an *ebas* file, you ask? It's a thing I made up, 'cause I am making a game which requires me to write a lot of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more bits.
+What is an *ebas* file? It's a thing I made up, 'cause I am making a game which requires me to write /a lot/ of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more features.
 
 Here's an example of some "eBASIC":
 
@@ -40,7 +40,7 @@ You can omit the ".ebas" extension. The output will be the the same name, but wi
 ** Transformations
 
 *** Line numbers & labels
-#+BEGIN_SRC
+#+BEGIN_SRC basic
    ~top
    print "i am the best ";
    goto ~top
@@ -48,8 +48,8 @@ You can omit the ".ebas" extension. The output will be the the same name, but wi
 
  compiles to:
 
-#+BEGIN_SRC
-   10 print "i am the best";
+#+BEGIN_SRC basic
+   10 print "i am the best ";
    20 goto 10
 #+END_SRC
 
@@ -75,7 +75,7 @@ Comments with "#" are removed from the source code (You can still use REM commen
 
 Most BASIC programs jam many statements onto a single line. To keep the source readable, you can use multiple lines - then any ending with ":" will be concatenated.
 
-#+BEGIN_SRC
+#+BEGIN_SRC basic
    for n=0 to 62 :
      read q :
      poke 0x340+n,q :
@@ -84,6 +84,26 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
 
  compiles to:
 
-#+BEGIN_SRC
+#+BEGIN_SRC basic
    10 for n=0 to 62 :read q :poke 832+n,q :next
 #+END_SRC
+
+** Options
+Sorry, no options. But there are a couple of constants at the top of the script that you might want to change:
+
+#+BEGIN_SRC js
+const LINE_SPACING = 10;
+const OUTFILE_PATH = "./";
+#+END_SRC
+
+*LINE_SPACING* is how to sequentially number your source code. Default is 10, but you might just want 1 (or 5, or whatever).
+*OUTFILE_PATH* indicates where to dump the output file. Default is in the current directory.
+
+** Running .bas files on a C64
+My use case is to convert the .ebas file to plain C64 BASIC, then compile /that/ into a C64 .prg file with Egon Olsen's fantastic [[https://github.com/EgonOlsen71/basicv2][BASICv2]] `mospeed` java command line tool:
+
+#+BEGIN_SRC bash
+./mospeed.sh -target=test.prg test.bas
+#+END_SRC
+
+The .prg file can then be loaded into Vice or another emulator (or, you know, run on a Commodore 64!).
