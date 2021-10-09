@@ -19,7 +19,7 @@ What is an *ebas* file, you ask? It's a thing I made up, 'cause I am making a ga
 #+END_SRC
 
 Generates:
-#+BEGIN_SRC
+#+BEGIN_SRC basic
   10 for n=4 to 9:poke v+n, n*20:next
   20 print "{clear}"
   30 poke 646,n:n=n+1
