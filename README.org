@@ -1,6 +1,32 @@
 * EBAS2BAS
 Transform .ebas files to .bas files by adding line numbers, and turning labels (~label_name) into line numbers, and some other helpful transformations.
 
+What is an *ebas* file, you ask? It's a thing I made up, 'cause I am making a game which requires me to write a lot of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more bits. Here's an example:
+
+#+BEGIN_SRC
+  # Position sprites
+  for n=4 to 9:
+    poke v+n,n*0x14:
+  next
+
+  # Print some text
+  print "{clear}"
+  ~top
+  poke 0x286,n:
+  n=n+1
+  print "coding is basic ...  ";
+  goto ~top
+#+END_SRC
+
+Generates:
+#+BEGIN_SRC
+  10 for n=4 to 9:poke v+n, n*20:next
+  20 print "{clear}"
+  30 poke 646,n:n=n+1
+  40 print "coding is basic ...  ";
+  50 goto 30
+#+END_SRC
+
 ** Usage
 
 #+BEGIN_SRC
