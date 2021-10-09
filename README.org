@@ -3,7 +3,7 @@ Transform .ebas files to .bas files by adding line numbers, and turning labels (
 
 What is an *ebas* file, you ask? It's a thing I made up, 'cause I am making a game which requires me to write a lot of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more bits. Here's an example:
 
-#+BEGIN_SRC
+#+BEGIN_SRC basic
   # Position sprites
   for n=4 to 9:
     poke v+n,n*0x14:
