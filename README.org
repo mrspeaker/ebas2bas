@@ -90,6 +90,11 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
    10 for n=0 to 62 :read q :poke 832+n,q :next
 #+END_SRC
 
+*** Macros
+// TODO: document macros. Write JavaScript that generates BASIC
+*** Inline assembler
+// TODO: document inline asm: Uses KickAssembler to compile asm, POKE the bytes into memory, and then calls it with SYS.
+
 ** Options
 Sorry, no options. But there are a couple of constants at the top of the script that you might want to change:
 
