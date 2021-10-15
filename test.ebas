@@ -1,13 +1,21 @@
 # .ebas -> .bas introduction file
 # Run with:
 # > node ebas.js intro
-# Generates a regular C64 basic file `./intro.bas`
+# Generates a regular C64 basic file `./test.bas`
 
-poke 0xd020,0: poke 0xd021,0 # Set colors to black
+rem ebas2bas example
 
 # C64 asm coders know all the $DXXX locations by heart,
 # C64 basic coders know all the v+XX locations by heart!
-v=0xd000: # VIC chip base address
+v=0xd000 # VIC chip base address
+
+{{!"set screen colors via asm"
+  *=$c000
+  lda #0
+  sta $d020
+  sta $d021
+  rts
+!}}
 
 # sprites
 mask=0b_0001_1100 # let's use sprite 3,4, and 5.
@@ -28,15 +36,16 @@ poke v+0x1d,mask
 
 # Position sprites
 for n=4 to 9:
-  poke v+n, n*20:
+  poke v+n,n*15:
 next
 
+poke v+18,23 # switch to lowercase mode
+
 # Print some text
-n=0
 print "{clear}"
 ~top
-poke 646,n:n=n+1
-print "coding is basic ...  ";
+print "{gry3}are you keeping up with ";
+print "{{ rainbow("the commodore") }}? "
 goto ~top
 
 data 0,127,0,1,255,192,3,255,224,3,231,224
@@ -44,3 +53,11 @@ data 7,217,240,7,223,240,7,217,240,3,231,224
 data 3,255,224,3,255,224,2,255,160,1,127,64
 data 1,62,64,0,156,128,0,156,128,0,73,0,0,73,0
 data 0,62,0,0,62,0,0,62,0,0,28,0
+
+{! rainbow = (str) => {
+  // COLS is a magic list of C64 cols.
+  const cols = COLS.slice(1);
+  return mapped = str.split("")
+    .map((c,i) => `{${cols[i%cols.length]}}${c}`)
+    .join("");
+} !}
