@@ -16,10 +16,10 @@ Here's an example of some "eBASIC":
   # Print some text
   print "{clear}"
   ~top
-  poke 0x286,n:
-  n=n+1
-  print "coding is basic ...  ";
-  goto ~top
+   poke 0x286,n:
+   n=n+1
+   print "coding is basic ...  ";
+   goto ~top
 #+END_SRC
 
 Running ebas2bas generates BASIC:
