@@ -22,29 +22,24 @@ if (args.length) {
 
 async function main(file) {
   const name = chopExtension(file);
-  let txt;
   try {
-    txt = await readFile(name + INFILE_SUFFIX);
+    const txt = await readFile(name + INFILE_SUFFIX);
+    const input = txt.split("\n");
+    const includified = await includify(input);
+    const asmified = await inlineASMify(includified);
+    const macrofied = macrofy(asmified);
+    const decommented = decomment(macrofied);
+    const sameLinered = sameLinerize(decommented);
+    const numberized = numberize(sameLinered);
+    const decimalized = decimalize(numberized);
+    const output = stringify(decimalized);
+
+    //  console.log(output);
+    await writeFile(OUTFILE_PATH + name + OUTFILE_SUFFIX, output);
+    console.log("Done.");
   } catch (e) {
-    console.log("Could not open file\n", e);
-    return;
+    console.error(e);
   }
-
-  const input = txt.split("\n");
-  const includified = await includify(input);
-  const asmified = await inlineASMify(includified);
-  const macrofied = macrofy(asmified);
-  const decommented = decomment(macrofied);
-  const sameLinered = sameLinerize(decommented);
-  const numberized = numberize(sameLinered);
-  const decimalized = decimalize(numberized);
-  const output = stringify(decimalized);
-
-  //  console.log(output);
-
-  writeFile(OUTFILE_PATH + name + OUTFILE_SUFFIX, output)
-    .then(() => console.log("Done."))
-    .catch((e) => console.error("Writing failed.\n", e));
 }
 
 const chunk = (arr, size) =>
