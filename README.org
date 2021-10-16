@@ -90,6 +90,11 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
    10 for n=0 to 62 :read q :poke 832+n,q :next
 #+END_SRC
 
+*** Include files
+External files can be included into the current source with ~{{ "./path/to/file" }}~. The contents of the file will be dumped in the first pass, so all further transformations (hex, macros, etc) will be applied to the included contents. Include files can also contain other includes (with no circular dependency testing, so becareful!).
+
+As the include file is dumped directly, it can also be assembly code, or macros. If it's assembly, remember to wrap the include tag in an inline-assembler tag (see section ~inline assembler~) if needed. Eg: ~{{! {{ "./test.asm" }} !}}~.
+
 *** Macros
 Macros are javascript functions that return BASIC source code that is injected in the final listing. If the return value is an array, multiple lines will be injected. To define a macro, wrap a javascript function in ~{!~ and ~!}~ tags:
 #+BEGIN_SRC js
