@@ -24,6 +24,7 @@ v=0xd000 # VIC chip base address
 !}}
 
 # sprites
+rem some c64 sprites
 mask=0b_0001_1100 # let's use sprite 3,4, and 5.
 
 poke v+0x15,mask # sprite enable
