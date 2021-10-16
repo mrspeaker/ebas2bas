@@ -303,13 +303,14 @@ const pokeASMBytes = (compiled, title, exec = true) => {
     console.warn("WARNING: >255 bytes not poked properly!");
   }
   const titleREM = title ? `rem ${title}\n` : "";
-  const data = chunk(compiled.bytes, 16)
-    .map((c) => "data " + c.join(","))
-    .join("\n");
-  const pokes = `\nfor za = 0 to ${compiled.bytes.length - 1}
-read zb:poke ${compiled.address}+za,zb:next za`;
-  const sys = exec ? `\nsys ${compiled.address}` : "";
-  return (titleREM + data + pokes + sys).split("\n");
+  const data =
+    chunk(compiled.bytes, 16)
+      .map((c) => "data " + c.join(","))
+      .join("\n") + "\n";
+  const pokes = `for za=0 to ${compiled.bytes.length - 1}:
+read zb:poke ${compiled.address}+za,zb:next za\n`;
+  const sys = exec ? `sys ${compiled.address}\n` : "\n";
+  return (titleREM + pokes + sys + data).split("\n");
 };
 
 const numberize = (nonNumberedLines) => {
