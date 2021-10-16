@@ -110,15 +110,19 @@ print "hello, {{ rainbow("world") }}!"
 // TODO: document inline asm: Uses KickAssembler to compile asm, POKE the bytes into memory, and then calls it with SYS.
 
 ** Options
-Sorry, no options. But there are a couple of constants at the top of the script that you might want to change:
+Sorry, no CLI options yet. Settings are defined in `ebas_config.json`:
 
-#+BEGIN_SRC js
-const LINE_SPACING = 10;
-const OUTFILE_PATH = "./";
+#+BEGIN_SRC json
+{
+  "LINE_SPACING": 10,
+  "OUTFILE_PATH": "./",
+  "KICKASSEMBLER_PATH": "/usr/lib/KickAssembler/",
+}
 #+END_SRC
 
-*LINE_SPACING* is how to sequentially number your source code. Default is 10, but you might just want 1 (or 5, or whatever).
-*OUTFILE_PATH* indicates where to dump the output file. Default is in the current directory.
+- *LINE_SPACING* is how to sequentially number your source code. Default is 10, but you might just want 1 (or 5, or whatever).
+- *OUTFILE_PATH_S* indicates where to dump the output file. Default is in the current directory.
+- *KICKASSEMBLER_PATH* is the path to the KickAssembler compiler jar file.
 
 ** Running .bas files on a C64
 My use case is to convert the .ebas file to plain C64 BASIC, then compile /that/ into a C64 .prg file with Egon Olsen's fantastic [[https://github.com/EgonOlsen71/basicv2][BASICv2]] `mospeed` java command line tool:
