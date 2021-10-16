@@ -94,7 +94,7 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
 Macros are javascript functions that return BASIC source code that is injected in the final listing. If the return value is an array, multiple lines will be injected. To define a macro, wrap a javascript function in ~{!~ and ~!}~ tags:
 #+BEGIN_SRC js
 {! rainbow = (str) => {
-  const cols = COLS.slice(1); // COLS = Magic array of colors
+  const cols = COLS.slice(1); // COLS = Magic array of color tokens
   return str
     .split("")
     .map((ch,i) => "{" + cols[i % cols.length] + "}" + ch)
