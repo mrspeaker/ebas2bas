@@ -103,7 +103,7 @@ Macros are javascript functions that return BASIC source code that is injected i
 This defines a macro called `rainbow` that splits an input string into characters, then changes the color of each character using the standard basic color codes (eg `{wht},{red}`). To call a macro, wrap a function call in `{{` and `}}` tags:
 #+BEGIN_SRC basic
 print "hello, {{ rainbow("world") }}!"
-rem compiles to:
+REM compiles to:
 10 print "hello, {wht}w{red}o{cyn}r{pur}l{grn}d!"
 #+END_SRC
 *** Inline assembler
