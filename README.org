@@ -128,10 +128,9 @@ Inline assembler can be compiled with [[http://www.theweb.dk/KickAssembler/Main.
 Compiles to:
 #+BEGIN_SRC basic
 10 rem set screen colors via asm
-20 data 169,0,141,32,208,141,33,208,96
-30 for za = 0 to 8
-40 read zb:poke 49152+za,zb:next za
-50 sys 49152
+20 for za = 0 to 8:read zb:poke 49152+za,zb:next za
+30 sys 49152
+40 data 169,0,141,32,208,141,33,208,96
 #+END_SRC
 
 The title string is optional, and will be included in a REM statement if present. If you don't specify a base memory location (with the KickAssembler definition (eg, ~*=$c000~) it will use the default (I think it's ~$801~? Which is not good for BASIC!). But if you specify the base in your first inline asm block, subsequent blocks can continue on from the last address by putting a ~*~ after the opening tag.
