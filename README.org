@@ -95,7 +95,7 @@ Macros are javascript functions that return BASIC source code that is injected i
 #+BEGIN_SRC js
 {! rainbow = (str) => {
   const cols = COLS.slice(1); // COLS = Magic array of colors
-  return mapped = str
+  return str
     .split("")
     .map((ch,i) => "{" + cols[i % cols.length] + "}" + ch)
     .join("");
