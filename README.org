@@ -91,7 +91,7 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
 #+END_SRC
 
 *** Macros
-Macros are javascript functions that return BASIC source code that is injected in the final listing. If the return value is an array, multiple lines will be injected. To define a macro, wrap a javascript function in `{!` and `!}` tags:
+Macros are javascript functions that return BASIC source code that is injected in the final listing. If the return value is an array, multiple lines will be injected. To define a macro, wrap a javascript function in ~{!~ and ~!}~ tags:
 #+BEGIN_SRC js
 {! rainbow = (str) => {
   const cols = COLS.slice(1); // COLS = Magic array of colors
@@ -100,7 +100,7 @@ Macros are javascript functions that return BASIC source code that is injected i
     .join("");
 } !}
 #+END_SRC
-This defines a macro called `rainbow` that splits an input string into characters, then changes the color of each character using the standard basic color codes (eg `{wht},{red}`). To call a macro, wrap a function call in `{{` and `}}` tags:
+This defines a macro called `rainbow` that splits an input string into characters, then changes the color of each character using the standard basic color codes (eg ~{wht},{red}~). To call a macro, wrap a function call in ~{{~ and ~}}~ tags:
 #+BEGIN_SRC basic
 print "hello, {{ rainbow("world") }}!"
 REM compiles to:
@@ -133,7 +133,7 @@ The title string is optional, and will be included in a REM statement if present
 For example, the above asm is located from ~$c000~ to ~$c008~ (49152-49160 decimal). If you start the next asm block with ~{{!*~, it will POKE the bytes into location ~$c009~ (49161 decimal).
 
 ** Options
-Sorry, no CLI options yet. Settings are defined in `ebas_config.json`:
+Sorry, no CLI options yet. Settings are defined in [[https://github.com/mrspeaker/ebas2bas/blob/main/ebas_config.json][ebas_config.json]]:
 
 #+BEGIN_SRC json
 {
