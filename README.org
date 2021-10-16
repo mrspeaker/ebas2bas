@@ -107,7 +107,30 @@ print "hello, {{ rainbow("world") }}!"
 10 print "hello, {wht}w{red}o{cyn}r{pur}l{grn}d!"
 #+END_SRC
 *** Inline assembler
-// TODO: document inline asm: Uses KickAssembler to compile asm, POKE the bytes into memory, and then calls it with SYS.
+Inline assembler can be compiled with [[http://www.theweb.dk/KickAssembler/Main.html][KickAssembler]], and the bytes are then injected into the BASIC listing via POKES and run with a SYS call.
+
+#+BEGIN_SRC asm
+{{!"set screen colors via asm"
+  *=$c000
+  lda #0
+  sta $d020
+  sta $d021
+  rts
+!}}
+#+END_SRC
+
+Compiles to:
+#+BEGIN_SRC basic
+10 rem set screen colors via asm
+20 data 169,0,141,32,208,141,33,208,96
+30 for za = 0 to 8
+40 read zb:poke 49152+za,zb:next za
+50 sys 49152
+#+END_SRC
+
+The title string is optional, and will be included in a REM statement if present. If you don't specify a base memory location (with the KickAssembler definition (eg, ~*=$c000~) it will use the default (I think it's ~$801~? Which is not good for BASIC!). But if you specify the base in your first inline asm, subsequent blocks can continue on from the last address by putting a ~*~ after the opening tag.
+
+For example, the above asm is located from ~$c000~ to ~$C008~ (49160 decimal). If you start the next asm block with ~{{!*~, it will POKE the bytes into location (49161 decimal)
 
 ** Options
 Sorry, no CLI options yet. Settings are defined in `ebas_config.json`:
@@ -121,8 +144,8 @@ Sorry, no CLI options yet. Settings are defined in `ebas_config.json`:
 #+END_SRC
 
 - *LINE_SPACING* is how to sequentially number your source code. Default is 10, but you might just want 1 (or 5, or whatever).
-- *OUTFILE_PATH_S* indicates where to dump the output file. Default is in the current directory.
-- *KICKASSEMBLER_PATH* is the path to the KickAssembler compiler jar file.
+- *OUTFILE_PATH* indicates where to dump the output file. Default is in the current directory.
+- *KICKASSEMBLER_PATH* is the path to the KickAssembler compiler jar file if you want to do inline assembler.
 
 ** Running .bas files on a C64
 My use case is to convert the .ebas file to plain C64 BASIC, then compile /that/ into a C64 .prg file with Egon Olsen's fantastic [[https://github.com/EgonOlsen71/basicv2][BASICv2]] `mospeed` java command line tool:

@@ -10,7 +10,7 @@ const TOKEN_LINE_CONTINUE = ":";
 const TOKEN_INLINE_ASM_OPEN = "{{!";
 const TOKEN_INLINE_ASM_CLOSE = "!}}";
 const INFILE_SUFFIX = ".ebas";
-const OUTFILE_SUFFIX = ".bash";
+const OUTFILE_SUFFIX = ".bas";
 
 const args = process.argv.slice(2);
 if (args.length) {
@@ -250,7 +250,7 @@ async function inlineASMify(lines) {
     inASMBlock: false,
     useAutoAddr: false,
     title: "",
-    addr: 0x2000, // Default POKE address
+    addr: 0xc000, // Default POKE address
   };
 
   const compile = async (ac, title = "") => {
