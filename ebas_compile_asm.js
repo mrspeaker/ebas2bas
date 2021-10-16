@@ -104,6 +104,7 @@ async function compileASM(asm) {
 
     exec(cmd, (err, stdout, stderr) => {
       if (err) return rej({ err });
+      if (stderr) return res({ err: stderr });
 
       const [kick, compiled] = stdout.split(SEPARATOR);
       if (kick.match("Error")) {
