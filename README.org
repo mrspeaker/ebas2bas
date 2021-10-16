@@ -130,7 +130,7 @@ Compiles to:
 
 The title string is optional, and will be included in a REM statement if present. If you don't specify a base memory location (with the KickAssembler definition (eg, ~*=$c000~) it will use the default (I think it's ~$801~? Which is not good for BASIC!). But if you specify the base in your first inline asm, subsequent blocks can continue on from the last address by putting a ~*~ after the opening tag.
 
-For example, the above asm is located from ~$c000~ to ~$C008~ (49160 decimal). If you start the next asm block with ~{{!*~, it will POKE the bytes into location (49161 decimal)
+For example, the above asm is located from ~$c000~ to ~$c008~ (49152-49160 decimal). If you start the next asm block with ~{{!*~, it will POKE the bytes into location ~$c009~ (49161 decimal).
 
 ** Options
 Sorry, no CLI options yet. Settings are defined in `ebas_config.json`:
