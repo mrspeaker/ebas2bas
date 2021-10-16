@@ -2,7 +2,7 @@ const fs = require("fs");
 const compileASM = require("./ebas_compile_asm.js");
 const config = require("./ebas_config.json");
 
-const { LINE_SPACING, OUTFILE_SUFFIX } = config;
+const { LINE_SPACING, OUTFILE_PATH } = config;
 const TRANSFORM_BASES = true;
 const TOKEN_LABEL = "~";
 const TOKEN_COMMENT = "#";
@@ -10,7 +10,7 @@ const TOKEN_LINE_CONTINUE = ":";
 const TOKEN_INLINE_ASM_OPEN = "{{!";
 const TOKEN_INLINE_ASM_CLOSE = "!}}";
 const INFILE_SUFFIX = ".ebas";
-const OUTFILE_PATH = "./";
+const OUTFILE_SUFFIX = ".bash";
 
 const args = process.argv.slice(2);
 if (args.length) {

@@ -1,6 +1,5 @@
 {
   "LINE_SPACING": 10,
-  "OUTPUT_FILE_SUFFIX": ".bas",
-  "_KICKASSEMBLER_PATH": "/usr/lib//KickAssembler/",
-  "KICKASSEMBLER_PATH": "/Users/mrspeaker/Documents/dev/retro/KickAssembler/"
+  "OUTFILE_PATH": "./",
+  "KICKASSEMBLER_PATH": "/usr/lib/KickAssembler/",
 }
