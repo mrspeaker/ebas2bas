@@ -91,7 +91,21 @@ Most BASIC programs jam many statements onto a single line. To keep the source r
 #+END_SRC
 
 *** Macros
-// TODO: document macros. Write JavaScript that generates BASIC
+Macros are javascript functions that return BASIC source code that is injected in the final listing. If the return value is an array, multiple lines will be injected. To define a macro, wrap a javascript function in `{!` and `!}` tags:
+#+BEGIN_SRC js
+{! rainbow = (str) => {
+  const cols = COLS.slice(1); // COLS = Magic array of colors
+  return mapped = str.split("")
+    .map((c,i) => `{${cols[i%cols.length]}}${c}`)
+    .join("");
+} !}
+#+END_SRC
+This defines a macro called `rainbow` that splits an input string into characters, then changes the color of each character using the standard basic color codes (eg `{wht},{red}`). To call a macro, wrap a function call in `{{` and `}}` tags:
+#+BEGIN_SRC basic
+print "hello, {{ rainbow("world") }}!"
+# compiles to:
+10 print "hello, {wht}w{red}o{cyn}r{pur}l{grn}d!"
+#+END_SRC
 *** Inline assembler
 // TODO: document inline asm: Uses KickAssembler to compile asm, POKE the bytes into memory, and then calls it with SYS.
 
