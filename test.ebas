@@ -1,6 +1,6 @@
 # .ebas -> .bas introduction file
 # Run with:
-# > node ebas.js intro
+# > node ebas.js test
 # Generates a regular C64 basic file `./test.bas`
 
 rem ebas2bas example

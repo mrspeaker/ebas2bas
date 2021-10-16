@@ -1,9 +1,7 @@
 * EBAS2BAS
 C64 BASIC, with some lil' conveniences: no line numbers required, and some other helpful transformations. This tool converts /.ebas/ files to standard C64 BASIC as a /.bas/ file.
 
-What is an *ebas* file? It's a thing I made up, 'cause I am making a game which requires me to write /a lot/ of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more features.
-
-*Unless you are me, you likely will have no use for this script*.
+What is an *ebas* file? It's a thing I made up, 'cause I am making a game which requires me to write /a lot/ of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more features. *Unless you are me, you likely will have no use for this script*.
 
 [[https://user-images.githubusercontent.com/129330/136657907-99987639-f516-42a7-b2aa-4905a4704705.gif]]
 
