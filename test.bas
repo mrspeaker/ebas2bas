@@ -16,19 +16,20 @@
 160 for za = 0 to 107
 170 read zb:poke 49161+za,zb:next za
 180 sys 49161
-190 mask=28
-200 poke v+21,mask
-210 poke 2042,13:poke 2043,13:poke 2044,13
-220 for n=0 to 62 :read q :poke 832+n,q :next
-230 poke v+23,mask:poke v+29,mask
-240 for n=4 to 9:poke v+n,n*15:next
-250 poke v+18,23
-260 print "{clear}"
-270 print "{gry3}are you keeping up with ";
-280 print "{wht}t{red}h{cyn}e{pur} {grn}c{blu}o{yel}m{orn}m{brn}o{lred}d{gry1}o{gry2}r{lgrn}e? "
-290 goto 270
-300 data 0,127,0,1,255,192,3,255,224,3,231,224
-310 data 7,217,240,7,223,240,7,217,240,3,231,224
-320 data 3,255,224,3,255,224,2,255,160,1,127,64
-330 data 1,62,64,0,156,128,0,156,128,0,73,0,0,73,0
-340 data 0,62,0,0,62,0,0,62,0,0,28,0
+190 rem some c64 sprites
+200 mask=28
+210 poke v+21,mask
+220 poke 2042,13:poke 2043,13:poke 2044,13
+230 for n=0 to 62 :read q :poke 832+n,q :next
+240 poke v+23,mask:poke v+29,mask
+250 for n=4 to 9:poke v+n,n*15:next
+260 poke v+18,23
+270 print "{clear}"
+280 print "{gry3}are you keeping up with ";
+290 print "{wht}t{red}h{cyn}e{pur} {grn}c{blu}o{yel}m{orn}m{brn}o{lred}d{gry1}o{gry2}r{lgrn}e? "
+300 goto 280
+310 data 0,127,0,1,255,192,3,255,224,3,231,224
+320 data 7,217,240,7,223,240,7,217,240,3,231,224
+330 data 3,255,224,3,255,224,2,255,160,1,127,64
+340 data 1,62,64,0,156,128,0,156,128,0,73,0,0,73,0
+350 data 0,62,0,0,62,0,0,62,0,0,28,0
