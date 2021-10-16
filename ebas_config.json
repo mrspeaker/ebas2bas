@@ -1,5 +1,5 @@
 {
   "LINE_SPACING": 10,
   "OUTFILE_PATH": "./",
-  "KICKASSEMBLER_PATH": "/usr/lib/KickAssembler/",
+  "KICKASSEMBLER_PATH": "/usr/lib/KickAssembler/"
 }
