@@ -1,7 +1,8 @@
 const fs = require("fs");
 const compileASM = require("./ebas_compile_asm.js");
+const config = require("./ebas_config.json");
 
-const LINE_SPACING = 10;
+const { LINE_SPACING, OUTFILE_SUFFIX } = config;
 const TRANSFORM_BASES = true;
 const TOKEN_LABEL = "~";
 const TOKEN_COMMENT = "#";
@@ -9,7 +10,6 @@ const TOKEN_LINE_CONTINUE = ":";
 const TOKEN_INLINE_ASM_OPEN = "{{!";
 const TOKEN_INLINE_ASM_CLOSE = "!}}";
 const INFILE_SUFFIX = ".ebas";
-const OUTFILE_SUFFIX = ".bas";
 const OUTFILE_PATH = "./";
 
 const args = process.argv.slice(2);

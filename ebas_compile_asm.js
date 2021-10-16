@@ -1,5 +1,5 @@
 const { exec } = require("child_process");
-const pathToKickAssembler = "/usr/lib//KickAssembler/";
+const { KICKASSEMBLER_PATH } = require("./ebas_config.json");
 
 /*
   Extract memory segment locations from kickassember output.
@@ -94,7 +94,7 @@ async function compileASM(asm) {
       "cat <<EOF >$tmpf \n" +
       asm.replace(/\$/g, "\\$") +
       "\nEOF\n";
-    const compile = `java -cp '${pathToKickAssembler}*' kickass.KickAssembler $tmpf;`;
+    const compile = `java -cp '${KICKASSEMBLER_PATH}*' kickass.KickAssembler $tmpf;`;
 
     const SEPARATOR = "~~~~";
     const addSeparator = `echo '${SEPARATOR}';`;
