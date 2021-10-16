@@ -9,12 +9,18 @@ rem ebas2bas example
 # C64 basic coders know all the v+XX locations by heart!
 v=0xd000 # VIC chip base address
 
+# ------------- INLINE ASSEMBLER ---------------
 {{!"set screen colors via asm"
   *=$c000
   lda #0
   sta $d020
   sta $d021
   rts
+!}}
+
+# ------------ FILE INCLUDES -----------------
+{{!*"test include asm file"
+  {{ "./test.asm" }}
 !}}
 
 # sprites
