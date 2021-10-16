@@ -1,7 +1,9 @@
 * EBAS2BAS
 C64 BASIC, with some lil' conveniences: no line numbers required, and some other helpful transformations. This tool converts /.ebas/ files to standard C64 BASIC as a /.bas/ file.
 
-What is an *ebas* file? It's a thing I made up, 'cause I am making a game which requires me to write /a lot/ of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more features. Unless you are me, you likely will have no use for this script.
+What is an *ebas* file? It's a thing I made up, 'cause I am making a game which requires me to write /a lot/ of C64 BASIC, and I got annoyed at re-numbering things. Then I got carried away adding more features.
+
+*Unless you are me, you likely will have no use for this script*.
 
 [[https://user-images.githubusercontent.com/129330/136657907-99987639-f516-42a7-b2aa-4905a4704705.gif]]
 
@@ -154,10 +156,10 @@ Sorry, no CLI options yet. Settings are defined in [[https://github.com/mrspeake
 - *KICKASSEMBLER_PATH* is the path to the KickAssembler compiler jar file if you want to do inline assembler.
 
 ** Running .bas files on a C64
-My use case is to convert the .ebas file to plain C64 BASIC, then compile /that/ into a C64 .prg file with Egon Olsen's fantastic [[https://github.com/EgonOlsen71/basicv2][BASICv2]] `mospeed` java command line tool:
+My use case is to convert the .ebas file to plain C64 BASIC, then compile /that/ into an optimised C64 ~.prg~ file with Egon Olsen's fantastic [[https://github.com/EgonOlsen71/basicv2][BASICv2]] ~mospeed~ java command line tool:
 
 #+BEGIN_SRC bash
 ./mospeed.sh -target=test.prg test.bas
 #+END_SRC
 
-The .prg file can then be loaded into Vice or another emulator (or, you know, run on a Commodore 64!).
+The ~.prg~ file can then be loaded into Vice or another emulator (or, you know, run on a real Commodore 64!).
